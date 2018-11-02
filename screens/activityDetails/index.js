@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ActivityIndicator } from 'react-native';
-import { Content, Text, Body, Separator, ListItem, View } from "native-base";
+import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import styles from "./styles";
 import { API_URL, API_SITE_ID } from 'react-native-dotenv'
@@ -14,36 +14,33 @@ const env = {
 };
 
 
-export default class ActivityDetails extends Component {
+ class ActivityMap extends Component {
 
-  constructor(props){
-    super(props);
-    this.state ={ isLoading: true,
-                  title: "Activity Stats - Home",
-                  results: {},
-                  name: "",
-                  distance: "",
-                  polyline: ""
-                }
-  }
+   constructor(props){
+     super(props);
+     this.state ={ isLoading: true,
+                   activityId: this.props.activityMapId,
+                 }
+   }
 
   componentDidMount() {
     //const { navigation } = this.props;
     //const activityid = navigation.getParam('id', 'NO-ID');
+    activityId = this.state.activityId;
+    console.log(activityId);
   }
 
   render() {
     return (
       <View>
-        <Text>test</Text>
-
+        <Text>{this.state.activityId}</Text>
       </View>
     );
   }
 
 }
 
-class Details extends Component {
+export default class Details extends Component {
 
   constructor(props){
     super(props);
@@ -55,7 +52,8 @@ class Details extends Component {
   }
 
   componentDidMount(){
-
+      const { navigation } = this.props;
+      const activityid = navigation.getParam('id', 'NO-ID');
       //let Mura=require('mura.js');
       let moment = require('moment');
       let convert = require('convert-units');
@@ -67,13 +65,14 @@ class Details extends Component {
 
       const thisWeekStartDate = moment().startOf('isoWeek').format('YYYY-MM-DD');
 
-      console.log(id);
-      results = Mura.getEntity('activity').loadBy('id',this.props.id)
+      console.log(activityid);
+      results = Mura.getEntity('activity').loadBy('id',activityid)
       .then((results) => {
         //console.log(results.getMapsIterator());
         console.log(results.get('map'));
         this.setState({
           isLoading: false,
+          activityId: activityid,
           name: results.get('name'),
           distance: convert(results.get('distance')).from('m').to('mi').toFixed(2),
           mapId: results.get('map'),
@@ -88,7 +87,7 @@ class Details extends Component {
 
   render() {
 
-    //console.log(this.state.name);
+    //console.log(this.state.abc);
 
     if(this.state.isLoading){
       return(
@@ -98,11 +97,24 @@ class Details extends Component {
       )
     }
     return (
-
-      <Content padder>
-            <Text>Name: {this.state.name}</Text>
-            <Text>Distance: {this.state.distance}</Text>
-      </Content>
+      <Container style={styles.container}>
+        <Header style={styles.header}>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.openDrawer()}>
+              <Icon name='menu' />
+            </Button>
+          </Left>
+          <Body>
+            <Title>{this.state.name}</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content padder>
+              <ActivityMap activityMapId={this.state.activityId} />
+              <Text>Name: {this.state.name}</Text>
+              <Text>Distance: {this.state.distance}</Text>
+        </Content>
+      </Container>
     );
   }
 
