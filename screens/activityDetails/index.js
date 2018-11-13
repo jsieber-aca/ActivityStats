@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { ActivityIndicator } from 'react-native';
 import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import MapView, { Polyline, ProviderPropType } from 'react-native-maps';
+import { decode, encode } from 'rn-maps-polyline';
 import styles from "./styles";
 import { API_URL, API_SITE_ID } from 'react-native-dotenv'
 
@@ -25,14 +27,57 @@ const env = {
 
   componentDidMount() {
     //const { navigation } = this.props;
-    //const activityid = navigation.getParam('id', 'NO-ID');
-    activityId = this.state.activityId;
-    console.log(activityId);
+    Mura.init(
+      env
+    );
+
+    results = Mura.getEntity('map').loadBy('activityId',this.state.activityId)
+    .then((results) => {
+      console.log(results.getAll());
+      console.log(results.get('polyline'));
+
+      this.setState({
+        isLoading: false,
+        //activityId: activityid,
+        summary_polyline: results.get('summary_polyline'),
+        mapId: results.get('mapId'),
+        polyline: results.get('polyline')
+      }, function(){
+
+      });
+
+    }).catch((error) =>{
+      console.error(error);
+    });
+
   }
 
   render() {
     return (
+      //console.log(decode(this.state.summary_polyline));
       <View>
+        <MapView
+          style={{ flex: 1 }}
+          initialRegion={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+        <Polyline
+          coordinates={[
+            { latitude: 37.8025259, longitude: -122.4351431 },
+            { latitude: 37.7896386, longitude: -122.421646 },
+            { latitude: 37.7665248, longitude: -122.4161628 },
+            { latitude: 37.7734153, longitude: -122.4577787 },
+            { latitude: 37.7948605, longitude: -122.4596065 },
+            { latitude: 37.8025259, longitude: -122.4351431 }
+          ]}
+          strokeWidth={5}
+        />
+        </MapView>
+        <Text>{this.state.summary_polyline}</Text>
         <Text>{this.state.activityId}</Text>
       </View>
     );
@@ -86,7 +131,7 @@ export default class Details extends Component {
       };
 
   render() {
-
+    const { navigation } = this.props;
     //console.log(this.state.abc);
 
     if(this.state.isLoading){
