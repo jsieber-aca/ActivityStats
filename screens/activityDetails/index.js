@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
 import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import MapView, { Polyline, ProviderPropType } from 'react-native-maps';
@@ -14,7 +14,7 @@ const env = {
   siteid:API_SITE_ID,
   rootpath:API_URL
 };
-
+const { width, height } = Dimensions.get('window');
 
  class ActivityMap extends Component {
 
@@ -53,11 +53,20 @@ const env = {
   }
 
   render() {
+
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 60}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
     return (
       //console.log(decode(this.state.summary_polyline));
       <View>
         <MapView
-          style={{ flex: 1 }}
+          style={stylesMap.map}
           initialRegion={{
             latitude: 37.78825,
             longitude: -122.4324,
@@ -85,7 +94,7 @@ const env = {
 
 }
 
-export default class Details extends Component {
+ class Details extends Component {
 
   constructor(props){
     super(props);
@@ -164,3 +173,16 @@ export default class Details extends Component {
   }
 
 }
+
+const stylesMap = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
+
+export default Details;
