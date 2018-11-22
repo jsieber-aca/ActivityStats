@@ -3,7 +3,7 @@ import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
 import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import MapView, { Polyline, ProviderPropType } from 'react-native-maps';
-import { decode, encode } from 'rn-maps-polyline';
+import RNPolyline  from 'rn-maps-polyline'
 import styles from "./styles";
 import { API_URL, API_SITE_ID } from 'react-native-dotenv'
 
@@ -33,13 +33,14 @@ const { width, height } = Dimensions.get('window');
 
     results = Mura.getEntity('map').loadBy('activityId',this.state.activityId)
     .then((results) => {
-      console.log(results.getAll());
-      console.log(results.get('polyline'));
+      //console.log(results.getAll());
 
+      summary_polyline = RNPolyline.decode(results.get('summary_polyline'));
+      console.log(summary_polyline);
       this.setState({
         isLoading: false,
         //activityId: activityid,
-        summary_polyline: results.get('summary_polyline'),
+        summary_polyline: summary_polyline,
         mapId: results.get('mapId'),
         polyline: results.get('polyline')
       }, function(){
@@ -53,7 +54,7 @@ const { width, height } = Dimensions.get('window');
   }
 
   render() {
-
+    console.log(this.state.polyline);
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 60}}>
@@ -63,7 +64,7 @@ const { width, height } = Dimensions.get('window');
     }
 
     return (
-      //console.log(decode(this.state.summary_polyline));
+
       <View>
         <MapView
           style={stylesMap.map}
@@ -75,19 +76,10 @@ const { width, height } = Dimensions.get('window');
           }}
         >
         <Polyline
-          coordinates={[
-            { latitude: 37.8025259, longitude: -122.4351431 },
-            { latitude: 37.7896386, longitude: -122.421646 },
-            { latitude: 37.7665248, longitude: -122.4161628 },
-            { latitude: 37.7734153, longitude: -122.4577787 },
-            { latitude: 37.7948605, longitude: -122.4596065 },
-            { latitude: 37.8025259, longitude: -122.4351431 }
-          ]}
-          strokeWidth={5}
+          coordinates={this.state.summary_polyline}
+          strokeWidth={4}
         />
         </MapView>
-        <Text>{this.state.summary_polyline}</Text>
-        <Text>{this.state.activityId}</Text>
       </View>
     );
   }
@@ -119,11 +111,11 @@ const { width, height } = Dimensions.get('window');
 
       const thisWeekStartDate = moment().startOf('isoWeek').format('YYYY-MM-DD');
 
-      console.log(activityid);
+      //console.log(activityid);
       results = Mura.getEntity('activity').loadBy('id',activityid)
       .then((results) => {
         //console.log(results.getMapsIterator());
-        console.log(results.get('map'));
+        //console.log(results.get('map'));
         this.setState({
           isLoading: false,
           activityId: activityid,
@@ -164,10 +156,16 @@ const { width, height } = Dimensions.get('window');
           <Right />
         </Header>
         <Content padder>
-              <ActivityMap activityMapId={this.state.activityId} />
-              <Text>Name: {this.state.name}</Text>
-              <Text>Distance: {this.state.distance}</Text>
-        </Content>
+         <View style={{ flex: 1 }}>
+           <View style={{flex:1}}>
+             <ActivityMap activityMapId={this.state.activityId} />
+           </View>
+           <View style={{flex: 2}}>
+             <Text>Name: {this.state.name}</Text>
+             <Text>Distance: {this.state.distance}</Text>
+           </View>
+         </View>
+       </Content>
       </Container>
     );
   }
@@ -181,7 +179,9 @@ const stylesMap = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+    flex: 1,
+    width,
+    height: 300
   },
 });
 
