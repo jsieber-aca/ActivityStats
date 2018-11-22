@@ -20,20 +20,27 @@ const { width, height } = Dimensions.get('window');
 
    constructor(props){
      super(props);
+     console.log(this.props);
      this.state ={ isLoading: true,
                    activityId: this.props.activityMapId,
                  }
    }
 
   componentDidMount() {
-    //const { navigation } = this.props;
+    const { navigation } = this.props;
     Mura.init(
       env
     );
 
     results = Mura.getEntity('map').loadBy('activityId',this.state.activityId)
     .then((results) => {
+<<<<<<< HEAD
       //console.log(results.getAll());
+=======
+      console.log(this.state.activityId);
+      console.log(results.getAll());
+      console.log(results.get('polyline'));
+>>>>>>> 2a0744c5ff5ff06444eff2b82cd8b1bed056b901
 
       summary_polyline = RNPolyline.decode(results.get('summary_polyline'));
       console.log(summary_polyline);
@@ -54,6 +61,7 @@ const { width, height } = Dimensions.get('window');
   }
 
   render() {
+<<<<<<< HEAD
     console.log(this.state.polyline);
     if(this.state.isLoading){
       return(
@@ -81,6 +89,32 @@ const { width, height } = Dimensions.get('window');
         />
         </MapView>
       </View>
+=======
+
+    return (
+      //console.log(this.state.summary_polyline);
+      <MapView
+        style={stylesMap.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+      <Polyline
+        coordinates={[
+          { latitude: 37.8025259, longitude: -122.4351431 },
+          { latitude: 37.7896386, longitude: -122.421646 },
+          { latitude: 37.7665248, longitude: -122.4161628 },
+          { latitude: 37.7734153, longitude: -122.4577787 },
+          { latitude: 37.7948605, longitude: -122.4596065 },
+          { latitude: 37.8025259, longitude: -122.4351431 }
+        ]}
+        strokeWidth={5}
+      />
+      </MapView>
+>>>>>>> 2a0744c5ff5ff06444eff2b82cd8b1bed056b901
     );
   }
 
@@ -135,13 +169,13 @@ const { width, height } = Dimensions.get('window');
     const { navigation } = this.props;
     //console.log(this.state.abc);
 
-    if(this.state.isLoading){
+    /*if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 60}}>
           <ActivityIndicator/>
         </View>
       )
-    }
+    }*/
     return (
       <Container style={styles.container}>
         <Header style={styles.header}>
@@ -156,6 +190,7 @@ const { width, height } = Dimensions.get('window');
           <Right />
         </Header>
         <Content padder>
+<<<<<<< HEAD
          <View style={{ flex: 1 }}>
            <View style={{flex:1}}>
              <ActivityMap activityMapId={this.state.activityId} />
@@ -166,6 +201,18 @@ const { width, height } = Dimensions.get('window');
            </View>
          </View>
        </Content>
+=======
+          <View style={{ flex: 1 }}>
+            <View style={{flex:1}}>
+              <ActivityMap activityMapId={this.state.activityId} />
+            </View>
+            <View style={{flex: 2}}>
+              <Text>Name: {this.state.name}</Text>
+              <Text>Distance: {this.state.distance}</Text>
+            </View>
+          </View>
+        </Content>
+>>>>>>> 2a0744c5ff5ff06444eff2b82cd8b1bed056b901
       </Container>
     );
   }
