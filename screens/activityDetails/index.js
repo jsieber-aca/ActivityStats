@@ -342,10 +342,9 @@ const { width, height } = Dimensions.get('window');
   componentDidMount(){
       const { navigation } = this.props;
       const activityid = navigation.getParam('id', 'NO-ID');
-      //let Mura=require('mura.js');
+      
       let moment = require('moment');
       let convert = require('convert-units');
-      //console.log(Mura);
 
       Mura.init(
         env
