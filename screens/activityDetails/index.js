@@ -363,6 +363,8 @@ const { width, height } = Dimensions.get('window');
           name: results.get('name'),
           distance: convert(results.get('distance')).from('m').to('mi').toFixed(2),
           moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
+          total_elevation_gain: convert(results.get('total_elevation_gain')).from('m').to('ft').toFixed(2),
+          pace: convert(results.get('distance')).from('m').to('mi').toFixed(2) / moment().startOf('day').seconds(results.get('moving_time')),
           mapId: results.get('map'),
         }, function(){
 
@@ -405,6 +407,8 @@ const { width, height } = Dimensions.get('window');
              <Text>{this.state.name}</Text>
              <Text>Distance: {this.state.distance} mi.</Text>
              <Text>Moving Time: {this.state.moving_time}</Text>
+             <Text>Pace: {this.state.pace}</Text>
+             <Text>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
            </View>
          </View>
        </Content>
