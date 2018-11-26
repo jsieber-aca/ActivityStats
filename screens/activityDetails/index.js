@@ -3,7 +3,7 @@ import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
 import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import MapView, { Polyline, ProviderPropType } from 'react-native-maps';
-import RNPolyline  from 'rn-maps-polyline'
+import RNPolyline  from 'rn-maps-polyline';
 import styles from "./styles";
 import { API_URL, API_SITE_ID } from 'react-native-dotenv'
 
@@ -37,7 +37,7 @@ const { width, height } = Dimensions.get('window');
       //console.log(results.getAll());
 
       summary_polyline = RNPolyline.decode(results.get('summary_polyline'));
-      console.log(summary_polyline);
+      //console.log(summary_polyline);
       this.setState({
         isLoading: false,
         //activityId: activityid,
@@ -299,7 +299,7 @@ const { width, height } = Dimensions.get('window');
 
 
   render() {
-    console.log(this.state.polyline);
+    //console.log(this.state.polyline);
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 60}}>
@@ -342,7 +342,7 @@ const { width, height } = Dimensions.get('window');
   componentDidMount(){
       const { navigation } = this.props;
       const activityid = navigation.getParam('id', 'NO-ID');
-      
+
       let moment = require('moment');
       let convert = require('convert-units');
 
@@ -355,13 +355,14 @@ const { width, height } = Dimensions.get('window');
       //console.log(activityid);
       results = Mura.getEntity('activity').loadBy('id',activityid)
       .then((results) => {
-        //console.log(results.getMapsIterator());
+        console.log(results.getAll());
         //console.log(results.get('map'));
         this.setState({
           isLoading: false,
           activityId: activityid,
           name: results.get('name'),
           distance: convert(results.get('distance')).from('m').to('mi').toFixed(2),
+          moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
           mapId: results.get('map'),
         }, function(){
 
@@ -403,6 +404,7 @@ const { width, height } = Dimensions.get('window');
            <View style={{flex: 2}}>
              <Text>{this.state.name}</Text>
              <Text>Distance: {this.state.distance} mi.</Text>
+             <Text>Moving Time: {this.state.moving_time}</Text>
            </View>
          </View>
        </Content>
@@ -422,7 +424,6 @@ const stylesMap = StyleSheet.create({
     flex: 1,
     width,
     height: 300
-
   },
 });
 
