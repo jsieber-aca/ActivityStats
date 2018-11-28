@@ -360,6 +360,7 @@ const { width, height } = Dimensions.get('window');
         this.setState({
           isLoading: false,
           activityId: activityid,
+          type: results.get('type'),
           name: results.get('name'),
           distance: convert(results.get('distance')).from('m').to('mi').toFixed(2),
           moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
@@ -394,7 +395,7 @@ const { width, height } = Dimensions.get('window');
             </Button>
           </Left>
           <Body>
-            <Title>{this.state.name}</Title>
+            <Title>{this.state.type}</Title>
           </Body>
           <Right />
         </Header>
