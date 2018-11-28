@@ -363,6 +363,7 @@ const { width, height } = Dimensions.get('window');
           type: results.get('type'),
           name: results.get('name'),
           distance: convert(results.get('distance')).from('m').to('mi').toFixed(2),
+          elapsed_time: moment().startOf('day').seconds(results.get('elapsed_time')).format('HH:mm:ss'),
           moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
           total_elevation_gain: convert(results.get('total_elevation_gain')).from('m').to('ft').toFixed(2),
           pace: convert(results.get('distance')).from('m').to('mi').toFixed(2) / moment().startOf('day').seconds(results.get('moving_time')),
@@ -407,6 +408,7 @@ const { width, height } = Dimensions.get('window');
            <View style={{flex: 2}}>
              <Text>{this.state.name}</Text>
              <Text>Distance: {this.state.distance} mi.</Text>
+             <Text>Total Time: {this.state.elapsed_time}</Text>
              <Text>Moving Time: {this.state.moving_time}</Text>
              <Text>Pace: {this.state.pace}</Text>
              <Text>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
