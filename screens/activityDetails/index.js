@@ -16,7 +16,7 @@ const env = {
 };
 const { width, height } = Dimensions.get('window');
 
- class ActivityMap extends Component {
+ class ActivityMap extends React.Component {
 
    constructor(props){
      super(props);
@@ -328,7 +328,7 @@ const { width, height } = Dimensions.get('window');
 
 }
 
- class Details extends Component {
+ class Details extends React.Component {
 
   constructor(props){
     super(props);
@@ -352,7 +352,7 @@ const { width, height } = Dimensions.get('window');
 
       const thisWeekStartDate = moment().startOf('isoWeek').format('YYYY-MM-DD');
 
-      //console.log(activityid);
+
       results = Mura.getEntity('activity').loadBy('id',activityid)
       .then((results) => {
         console.log(results.getAll());
@@ -378,8 +378,6 @@ const { width, height } = Dimensions.get('window');
       };
 
   render() {
-    const { navigation } = this.props;
-
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 60}}>

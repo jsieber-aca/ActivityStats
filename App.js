@@ -45,7 +45,8 @@ export default class App extends React.Component {
 const Drawer = createDrawerNavigator(
   {
     Home: { screen: Home },
-    ActivityList: { screen: ActivityList }
+    ActivityList: { screen: ActivityList },
+    ActivityDetails: { screen: ActivityDetails },
   },
   {
     initialRouteName: "Home",
