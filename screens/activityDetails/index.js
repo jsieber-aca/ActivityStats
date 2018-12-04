@@ -53,7 +53,7 @@ const mapWidth = width - 20;
     }).catch((error) =>{
       console.error(error);
     });
-    console.log(customGMap);
+
     mapStyle = customGMap;
 
   }
@@ -61,6 +61,7 @@ const mapWidth = width - 20;
 
   render() {
     //console.log(this.state.polyline);
+
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 60}}>
@@ -68,24 +69,30 @@ const mapWidth = width - 20;
         </View>
       )
     }
-
-    return (
-
-      <View>
-        <MapView
-          style={stylesMap.map}
-          ref={(ref) => { this.mapRef = ref }}
-          onLayout = {() => this.mapRef.fitToCoordinates(this.state.summary_polyline, { edgePadding: { top: 10, right: 10, bottom: 10, left: 10 }, animated: true })}
-          customMapStyle={mapStyle}>
-        <Polyline
-          coordinates={this.state.summary_polyline}
-          strokeWidth={3}
-          strokeColor="#F00"
-        />
-        </MapView>
-      </View>
-    );
-  }
+    if(this.state.polyline.length){
+      return (
+        <View>
+          <MapView
+            style={stylesMap.map}
+            ref={(ref) => { this.mapRef = ref }}
+            onLayout = {() => this.mapRef.fitToCoordinates(this.state.summary_polyline, { edgePadding: { top: 10, right: 10, bottom: 10, left: 10 }, animated: true })}
+            customMapStyle={mapStyle}>
+          <Polyline
+            coordinates={this.state.summary_polyline}
+            strokeWidth={3}
+            strokeColor="#F00"
+          />
+          </MapView>
+        </View>
+      );
+      }else{
+        return(
+          <View>
+            <Text>Activity does not have map data!</Text>
+          </View>
+        );
+      }
+    }
 
 }
 
@@ -182,6 +189,7 @@ const mapWidth = width - 20;
   }
 
 }
+
 
 const stylesMap = StyleSheet.create({
   container: {
