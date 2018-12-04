@@ -125,6 +125,8 @@ const mapWidth = width - 20;
       .then((results) => {
         console.log(results.getAll());
         //console.log(results.get('map'));
+        let miles = results.get('distance') * 0.00062137;
+        let pace = (results.get('elapsed_time') / miles) / 60;
         this.setState({
           isLoading: false,
           activityId: activityid,
@@ -134,7 +136,7 @@ const mapWidth = width - 20;
           elapsed_time: moment().startOf('day').seconds(results.get('elapsed_time')).format('HH:mm:ss'),
           moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
           total_elevation_gain: convert(results.get('total_elevation_gain')).from('m').to('ft').toFixed(2),
-          pace: convert(results.get('distance')).from('m').to('mi').toFixed(2) / moment().startOf('day').seconds(results.get('moving_time')),
+          pace:  moment().startOf('day').add(pace, 'minutes').format('m:ss'),
           mapId: results.get('map'),
         }, function(){
 
@@ -179,7 +181,7 @@ const mapWidth = width - 20;
              <Text>Distance: {this.state.distance} mi.</Text>
              <Text>Total Time: {this.state.elapsed_time}</Text>
              <Text>Moving Time: {this.state.moving_time}</Text>
-             <Text>Pace: {this.state.pace}</Text>
+             <Text>Pace: {this.state.pace} m/mi</Text>
              <Text>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
            </View>
          </View>
