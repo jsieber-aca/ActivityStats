@@ -16,6 +16,7 @@ const env = {
   rootpath:API_URL
 };
 const { width, height } = Dimensions.get('window');
+const mapWidth = width - 20;
 
  class ActivityMap extends React.Component {
 
@@ -190,8 +191,8 @@ const stylesMap = StyleSheet.create({
   },
   map: {
     flex: 1,
-    width,
-    height: 300
+    width: mapWidth,
+    height: 310
   },
 });
 
