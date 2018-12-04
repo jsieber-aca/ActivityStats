@@ -1,5 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "Activity Stats",
+    "version": "1.5.0",
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "bundleIdentifier": "com.johnsieber.activitystats"
+    },
+    "android": {
+      "package": "com.johnsieber.activitystats"
+    }
+
   }
 }
