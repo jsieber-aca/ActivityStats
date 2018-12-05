@@ -209,7 +209,7 @@ export default class TabRun extends Component {
     return (
       <Content padder>
         <Separator bordered>
-          <Text style={styles.bigblue}>RUN - THIS WEEK</Text>
+          <Text style={styles.biggreen}>RUN - THIS WEEK</Text>
         </Separator>
         <ListItem >
           <Text>Distance: {this.state.thisWeekDistance}</Text>
@@ -224,7 +224,7 @@ export default class TabRun extends Component {
           <Text>Maximum Distance: {this.state.thisWeekMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RUN - LAST WEEK</Text>
+          <Text style={styles.biggreen}>RUN - LAST WEEK</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.lastWeekDistance}</Text>
@@ -239,7 +239,7 @@ export default class TabRun extends Component {
           <Text>Maximum Distance: {this.state.lastWeekMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RUN - THIS MONTH</Text>
+          <Text style={styles.biggreen}>RUN - THIS MONTH</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.thisMonthDistance}</Text>
@@ -254,7 +254,7 @@ export default class TabRun extends Component {
           <Text>Maximum Distance: {this.state.thisMonthMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RUN - THIS YEAR</Text>
+          <Text style={styles.biggreen}>RUN - THIS YEAR</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.thisYearDistance}</Text>

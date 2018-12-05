@@ -11,6 +11,7 @@ export default {
   },
   header: {
     marginTop: StatusBar.currentHeight,
+    backgroundColor: "#060"
   },
   content: {
     marginBottom: 10

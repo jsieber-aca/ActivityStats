@@ -11,6 +11,7 @@ export default {
   },
   header: {
     marginTop: StatusBar.currentHeight,
+    backgroundColor: "#060"
   },
   content: {
     marginBottom: 10
@@ -19,5 +20,8 @@ export default {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
     fontSize: 18,
     marginLeft: 10
+  },
+  badge: {
+    backgroundColor: "#060"
   },
 };

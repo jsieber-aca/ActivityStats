@@ -177,12 +177,24 @@ const mapWidth = width - 20;
              <ActivityMap activityMapId={this.state.activityId} />
            </View>
            <View style={{flex: 2}}>
-             <Text>{this.state.name}</Text>
-             <Text>Distance: {this.state.distance} mi.</Text>
-             <Text>Total Time: {this.state.elapsed_time}</Text>
-             <Text>Moving Time: {this.state.moving_time}</Text>
-             <Text>Pace: {this.state.pace} m/mi</Text>
-             <Text>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
+             <Separator bordered>
+               <Text style={styles.text}>{this.state.name}</Text>
+             </Separator>
+             <ListItem>
+               <Text style={styles.text}>Distance: {this.state.distance} mi.</Text>
+             </ListItem>
+             <Separator bordered>
+               <Text style={styles.text}>Total Time: {this.state.elapsed_time}</Text>
+             </Separator>
+             <ListItem>
+               <Text style={styles.text}>Moving Time: {this.state.moving_time}</Text>
+             </ListItem>
+             <Separator bordered>
+               <Text style={styles.text}>Pace: {this.state.pace} m/mi</Text>
+             </Separator>
+             <ListItem last>
+               <Text style={styles.text}>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
+             </ListItem>
            </View>
          </View>
        </Content>
@@ -202,7 +214,7 @@ const stylesMap = StyleSheet.create({
   map: {
     flex: 1,
     width: mapWidth,
-    height: 310
+    height: 300
   },
 });
 

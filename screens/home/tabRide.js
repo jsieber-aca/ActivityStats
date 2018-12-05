@@ -207,7 +207,7 @@ export default class TabRide extends Component {
     return (
       <Content padder>
         <Separator bordered>
-          <Text style={styles.bigblue}>RIDE - THIS WEEK</Text>
+          <Text style={styles.biggreen}>RIDE - THIS WEEK</Text>
         </Separator>
         <ListItem >
           <Text>Distance: {this.state.thisWeekDistance}</Text>
@@ -222,7 +222,7 @@ export default class TabRide extends Component {
           <Text>Maximum Distance: {this.state.thisWeekMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RIDE - LAST WEEK</Text>
+          <Text style={styles.biggreen}>RIDE - LAST WEEK</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.lastWeekDistance}</Text>
@@ -237,7 +237,7 @@ export default class TabRide extends Component {
           <Text>Maximum Distance: {this.state.lastWeekMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RIDE - THIS MONTH</Text>
+          <Text style={styles.biggreen}>RIDE - THIS MONTH</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.thisMonthDistance}</Text>
@@ -252,7 +252,7 @@ export default class TabRide extends Component {
           <Text>Maximum Distance: {this.state.thisMonthMaximumDistance}</Text>
         </ListItem>
         <Separator bordered>
-          <Text style={styles.bigblue}>RIDE - THIS YEAR</Text>
+          <Text style={styles.biggreen}>RIDE - THIS YEAR</Text>
         </Separator>
         <ListItem>
           <Text>Distance: {this.state.thisYearDistance}</Text>

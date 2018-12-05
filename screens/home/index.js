@@ -13,7 +13,7 @@ class Home extends React.Component {
   constructor(props){
     super(props);
     this.state ={ isLoading: true,
-                  title: "Activity Stats - Home",
+                  title: "Weekly Stats",
                   data: {}
                 }
   }
@@ -38,10 +38,10 @@ class Home extends React.Component {
         </Header>
         <Content padder>
           <Tabs>
-          <Tab heading="Run">
+          <Tab heading="Run" tabStyle={styles.tabs} activeTabStyle={styles.tabs}>
             <TabRun />
           </Tab>
-          <Tab heading="Ride">
+          <Tab heading="Ride" tabStyle={styles.tabs} activeTabStyle={styles.tabs}>
             <TabRide />
           </Tab>
         </Tabs>
