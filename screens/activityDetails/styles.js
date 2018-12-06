@@ -16,9 +16,22 @@ export default {
   content: {
     marginBottom: 10
   },
+  title: {
+    backgroundColor: "#7ccd7c"
+  },
+  texttitle: {
+    fontWeight: Platform.OS === "ios" ? "500" : "400",
+    fontSize: 20,
+    marginLeft: 1
+  },
   text: {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
     fontSize: 18,
-    marginLeft: 10
+    marginLeft: 1
+  },
+  smalltext: {
+    fontWeight: Platform.OS === "ios" ? "500" : "400",
+    fontSize: 12,
+    marginLeft: 1
   },
 };

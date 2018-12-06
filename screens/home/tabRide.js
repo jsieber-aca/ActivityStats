@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ActivityIndicator } from 'react-native';
-import { Content, Text, Body, Separator, ListItem, View } from "native-base";
+import { Content, Text, Body, Separator, List, ListItem, View } from "native-base";
 import styles from "./styles";
 import { API_URL, API_SITE_ID } from 'react-native-dotenv'
 
@@ -205,67 +205,69 @@ export default class TabRide extends Component {
       )
     }
     return (
-      <Content padder>
-        <Separator bordered>
-          <Text style={styles.biggreen}>RIDE - THIS WEEK</Text>
-        </Separator>
-        <ListItem >
-          <Text>Distance: {this.state.thisWeekDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Average Distance: {this.state.thisWeekAverageDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Minimum Distance: {this.state.thisWeekMinimumDistance}</Text>
-        </ListItem>
-        <ListItem last>
-          <Text>Maximum Distance: {this.state.thisWeekMaximumDistance}</Text>
-        </ListItem>
-        <Separator bordered>
-          <Text style={styles.biggreen}>RIDE - LAST WEEK</Text>
-        </Separator>
-        <ListItem>
-          <Text>Distance: {this.state.lastWeekDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Average Distance: {this.state.lastWeekAverageDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Minimum Distance: {this.state.lastWeekMinimumDistance}</Text>
-        </ListItem>
-        <ListItem last>
-          <Text>Maximum Distance: {this.state.lastWeekMaximumDistance}</Text>
-        </ListItem>
-        <Separator bordered>
-          <Text style={styles.biggreen}>RIDE - THIS MONTH</Text>
-        </Separator>
-        <ListItem>
-          <Text>Distance: {this.state.thisMonthDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Average Distance: {this.state.thisMonthAverageDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Minimum Distance: {this.state.thisMonthMinimumDistance}</Text>
-        </ListItem>
-        <ListItem last>
-          <Text>Maximum Distance: {this.state.thisMonthMaximumDistance}</Text>
-        </ListItem>
-        <Separator bordered>
-          <Text style={styles.biggreen}>RIDE - THIS YEAR</Text>
-        </Separator>
-        <ListItem>
-          <Text>Distance: {this.state.thisYearDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Average Distance: {this.state.thisYearAverageDistance}</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Minimum Distance: {this.state.thisYearMinimumDistance}</Text>
-        </ListItem>
-        <ListItem last>
-          <Text>Maximum Distance: {this.state.thisYearMaximumDistance}</Text>
-        </ListItem>
+      <Content>
+        <List>
+          <Separator bordered noIndent>
+            <Text style={styles.biggreen}>RIDE - THIS WEEK</Text>
+          </Separator>
+          <ListItem noIndent>
+            <Text>Distance: {this.state.thisWeekDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Average Distance: {this.state.thisWeekAverageDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Minimum Distance: {this.state.thisWeekMinimumDistance}</Text>
+          </ListItem>
+          <ListItem noIndent last>
+            <Text>Maximum Distance: {this.state.thisWeekMaximumDistance}</Text>
+          </ListItem>
+          <Separator bordered noIndent>
+            <Text style={styles.biggreen}>RIDE - LAST WEEK</Text>
+          </Separator>
+          <ListItem noIndent>
+            <Text>Distance: {this.state.lastWeekDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Average Distance: {this.state.lastWeekAverageDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Minimum Distance: {this.state.lastWeekMinimumDistance}</Text>
+          </ListItem>
+          <ListItem noIndent last>
+            <Text>Maximum Distance: {this.state.lastWeekMaximumDistance}</Text>
+          </ListItem>
+          <Separator bordered noIndent>
+            <Text style={styles.biggreen}>RIDE - THIS MONTH</Text>
+          </Separator>
+          <ListItem noIndent>
+            <Text>Distance: {this.state.thisMonthDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Average Distance: {this.state.thisMonthAverageDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Minimum Distance: {this.state.thisMonthMinimumDistance}</Text>
+          </ListItem>
+          <ListItem noIndent last>
+            <Text>Maximum Distance: {this.state.thisMonthMaximumDistance}</Text>
+          </ListItem>
+          <Separator bordered noIndent>
+            <Text style={styles.biggreen}>RIDE - THIS YEAR</Text>
+          </Separator>
+          <ListItem noIndent>
+            <Text>Distance: {this.state.thisYearDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Average Distance: {this.state.thisYearAverageDistance}</Text>
+          </ListItem>
+          <ListItem noIndent>
+            <Text>Minimum Distance: {this.state.thisYearMinimumDistance}</Text>
+          </ListItem>
+          <ListItem noIndent last>
+            <Text>Maximum Distance: {this.state.thisYearMaximumDistance}</Text>
+          </ListItem>
+        </List>
       </Content>
     );
   }

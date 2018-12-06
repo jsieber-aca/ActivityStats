@@ -1,7 +1,5 @@
-//import crypto from 'react-native-fast-crypto';
 import React from 'react';
 import { Root, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, List, ListItem } from 'native-base';
-//import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import Home from "./screens/home/";
 import SideBar from "./screens/sideBar/";

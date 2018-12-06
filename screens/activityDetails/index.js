@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ActivityIndicator, Dimensions, StyleSheet } from 'react-native';
-import { Content, Container, Header, Title, Text, Body, Separator, ListItem, View, Left, Right, Button, Icon } from "native-base";
+import { Content, Container, Header, Title, Text, Body, Separator, List, ListItem, View, Left, Right, Button, Icon } from "native-base";
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import MapView, { Polyline, ProviderPropType } from 'react-native-maps';
 import RNPolyline  from 'rn-maps-polyline';
@@ -176,25 +176,25 @@ const mapWidth = width - 20;
            <View style={{flex:1}}>
              <ActivityMap activityMapId={this.state.activityId} />
            </View>
-           <View style={{flex: 2}}>
-             <Separator bordered>
-               <Text style={styles.text}>{this.state.name}</Text>
-             </Separator>
-             <ListItem>
-               <Text style={styles.text}>Distance: {this.state.distance} mi.</Text>
-             </ListItem>
-             <Separator bordered>
-               <Text style={styles.text}>Total Time: {this.state.elapsed_time}</Text>
-             </Separator>
-             <ListItem>
-               <Text style={styles.text}>Moving Time: {this.state.moving_time}</Text>
-             </ListItem>
-             <Separator bordered>
-               <Text style={styles.text}>Pace: {this.state.pace} m/mi</Text>
-             </Separator>
-             <ListItem last>
-               <Text style={styles.text}>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
-             </ListItem>
+           <View style={{flex: 1}}>
+             <List>
+               <ListItem style={styles.title} first noIndent>
+                 <Body><Text style={styles.texttitle}>{this.state.name}</Text></Body>
+               </ListItem>
+               <ListItem noIndent>
+                 <Left><Text style={styles.smalltext}>Distance:</Text><Text style={styles.text}>{this.state.distance} mi.</Text></Left>
+                 <Right><Text style={styles.smalltext}>Total Time:</Text><Text style={styles.text}>{this.state.elapsed_time}</Text></Right>
+               </ListItem>
+               <ListItem noIndent>
+                 <Text style={styles.text}>Moving Time: {this.state.moving_time}</Text>
+               </ListItem>
+               <ListItem noIndent>
+                 <Text style={styles.text}>Pace: {this.state.pace} m/mi</Text>
+               </ListItem>
+               <ListItem last noIndent>
+                 <Text style={styles.text}>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
+               </ListItem>
+            </List>
            </View>
          </View>
        </Content>
@@ -214,7 +214,7 @@ const stylesMap = StyleSheet.create({
   map: {
     flex: 1,
     width: mapWidth,
-    height: 300
+    height: 270
   },
 });
 
