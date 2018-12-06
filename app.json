@@ -1,8 +1,9 @@
 {
   "expo": {
     "name": "Activity Stats",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "sdkVersion": "27.0.0",
+    "orientation": "portrait",
     "ios": {
       "bundleIdentifier": "com.johnsieber.activitystats"
     },
