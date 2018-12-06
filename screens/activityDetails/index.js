@@ -176,26 +176,32 @@ const mapWidth = width - 20;
            <View style={{flex:1}}>
              <ActivityMap activityMapId={this.state.activityId} />
            </View>
-           <View style={{flex: 1}}>
+
              <List>
                <ListItem style={styles.title} first noIndent>
                  <Body><Text style={styles.texttitle}>{this.state.name}</Text></Body>
                </ListItem>
-               <ListItem noIndent>
-                 <Left><Text style={styles.smalltext}>Distance:</Text><Text style={styles.text}>{this.state.distance} mi.</Text></Left>
-                 <Right><Text style={styles.smalltext}>Total Time:</Text><Text style={styles.text}>{this.state.elapsed_time}</Text></Right>
+               <ListItem>
+                 <Left>
+                   <Text style={styles.smalltext}>Distance:</Text>
+                   <Text style={styles.text}>{this.state.distance} mi.</Text>
+                 </Left>
+                 <Right>
+                   <Text style={styles.smalltext}>Total Time:</Text>
+                   <Text style={styles.text}>{this.state.elapsed_time}</Text>
+                 </Right>
                </ListItem>
-               <ListItem noIndent>
+               <ListItem>
                  <Text style={styles.text}>Moving Time: {this.state.moving_time}</Text>
                </ListItem>
-               <ListItem noIndent>
+               <ListItem>
                  <Text style={styles.text}>Pace: {this.state.pace} m/mi</Text>
                </ListItem>
-               <ListItem last noIndent>
+               <ListItem last>
                  <Text style={styles.text}>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
                </ListItem>
             </List>
-           </View>
+           
          </View>
        </Content>
       </Container>

@@ -21,17 +21,17 @@ export default {
   },
   texttitle: {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
-    fontSize: 20,
+    fontSize: 22,
     marginLeft: 1
   },
   text: {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
-    fontSize: 18,
+    fontSize: 20,
     marginLeft: 1
   },
   smalltext: {
     fontWeight: Platform.OS === "ios" ? "500" : "400",
-    fontSize: 12,
+    fontSize: 16,
     marginLeft: 1
   },
 };

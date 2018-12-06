@@ -61,7 +61,7 @@ var convert = require('convert-units');
           <Content padder style={styles.content}>
             <List
               dataArray={this.state.dataSource}
-              renderRow={(item) => <ListItem noIndent button onPress={() => { this.props.navigation.navigate('ActivityDetails', { id: item.id }); }}>{item.type == "Ride" ? (<Icon name="bicycle" style={{ color: '#0A69FE', fontSize: 25}} />) : (<Icon type="MaterialIcons" name="directions-run" style={{ color: '#0A69FE', fontSize: 25}} />)}<Body><Text style={styles.text}>{item.name}</Text></Body><Right><Badge style={styles.badge}><Text>{convert(item.distance).from('m').to('mi').toFixed(2)} mi.</Text></Badge></Right></ListItem>}
+              renderRow={(item) => <ListItem noIndent button onPress={() => { this.props.navigation.navigate('ActivityDetails', { id: item.id }); }}>{item.type == "Ride" ? (<Icon name="bicycle" style={{ color: '#060', fontSize: 25}} />) : (<Icon type="MaterialIcons" name="directions-run" style={{ color: '#060', fontSize: 25}} />)}<Body><Text style={styles.text}>{item.name}</Text></Body><Right><Badge style={styles.badge}><Text>{convert(item.distance).from('m').to('mi').toFixed(2)} mi.</Text></Badge></Right></ListItem>}
               keyExtractor={(item, index) => index}
             >
           </List>
