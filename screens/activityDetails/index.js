@@ -137,6 +137,9 @@ const mapWidth = width - 20;
           moving_time: moment().startOf('day').seconds(results.get('moving_time')).format('HH:mm:ss'),
           total_elevation_gain: convert(results.get('total_elevation_gain')).from('m').to('ft').toFixed(2),
           pace:  moment().startOf('day').add(pace, 'minutes').format('m:ss'),
+          calories: results.get('calories'),
+          kudos: results.get('kudos_count'),
+          suffer_score: results.get('suffer_score'),
           mapId: results.get('map'),
         }, function(){
 
@@ -182,26 +185,71 @@ const mapWidth = width - 20;
                  <Body><Text style={styles.texttitle}>{this.state.name}</Text></Body>
                </ListItem>
                <ListItem>
-                 <Left>
-                   <Text style={styles.smalltext}>Distance:</Text>
-                   <Text style={styles.text}>{this.state.distance} mi.</Text>
-                 </Left>
-                 <Right>
-                   <Text style={styles.smalltext}>Total Time:</Text>
-                   <Text style={styles.text}>{this.state.elapsed_time}</Text>
-                 </Right>
+                 <View style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                     <View>
+                       <Text style={styles.smalltext}>Distance:</Text>
+                       <Text style={styles.text}>{this.state.distance} mi.</Text>
+                     </View>
+                     <View>
+                       <Text style={styles.smalltext}>Pace:</Text>
+                       <Text style={styles.text}>{this.state.pace} m/mi.</Text>
+                     </View>
+                 </View>
                </ListItem>
                <ListItem>
-                 <Text style={styles.text}>Moving Time: {this.state.moving_time}</Text>
+                 <View style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    <View>
+                      <Text style={styles.smalltext}>Total Time:</Text>
+                      <Text style={styles.text}>{this.state.elapsed_time}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.smalltext}>Moving Time:</Text>
+                      <Text style={styles.text}>{this.state.moving_time}</Text>
+                    </View>
+                 </View>
                </ListItem>
                <ListItem>
-                 <Text style={styles.text}>Pace: {this.state.pace} m/mi</Text>
+                 <View style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    <View>
+                      <Text style={styles.smalltext}>Elevation Gain:</Text>
+                      <Text style={styles.text}>{this.state.total_elevation_gain} ft.</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.smalltext}>Calories:</Text>
+                      <Text style={styles.text}>{this.state.calories}</Text>
+                    </View>
+                 </View>
                </ListItem>
                <ListItem last>
-                 <Text style={styles.text}>Total Elevation Gain: {this.state.total_elevation_gain}</Text>
+                 <View style={{
+                      flex: 1,
+                      flexDirection: 'row',
+                      justifyContent: 'space-evenly',
+                    }}>
+                    <View>
+                      <Text style={styles.smalltext}>Suffer Score:</Text>
+                      <Text style={styles.text}>{this.state.suffer_score}</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.smalltext}>Kudos:</Text>
+                      <Text style={styles.text}>{this.state.kudos}</Text>
+                    </View>
+                 </View>
                </ListItem>
             </List>
-           
+
          </View>
        </Content>
       </Container>
